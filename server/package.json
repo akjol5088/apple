@@ -1,0 +1,13 @@
+{
+  "name": "osh-taxi-park-server",
+  "version": "1.0.0",
+  "description": "Osh Taxi Park Backend — Express + MongoDB + Socket.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": ["taxi", "dispatch", "socket.io"],
+  "author": "Osh Taxi Park",
+  "license": "ISC"
+}
