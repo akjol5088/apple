@@ -13,9 +13,10 @@ import './index.css';
 
 const NAV = [
   { id: 'dashboard', Icon: LayoutGrid, label: 'Башкаруу' },
+  { id: 'orders',    Icon: FileText,   label: 'Заказдар' },
   { id: 'fleet',     Icon: Car,        label: 'Флот' },
   { id: 'drivers',   Icon: Users,      label: 'Айдоочулар' },
-  { id: 'finance',   Icon: FileText,   label: 'Финансы' },
+  { id: 'finance',   Icon: BarChart3,  label: 'Финансы' },
   { id: 'stats',     Icon: BarChart3,  label: 'Статистика' },
   { id: 'settings',  Icon: Settings,   label: 'Орнотуулар' },
 ];
@@ -26,6 +27,7 @@ const NAV = [
 const translations = {
   kg: {
     dashboard: 'Башкаруу', fleet: 'Флот', drivers: 'Айдоочулар', finance: 'Финансы',
+    orders: 'Заказдар', minutes: 'мүнөт', assign: 'Дайындоо',
     car: 'Машина', free: 'Бош', busy: 'Заказда', earnings: 'Киреше', logout: 'Чыгуу',
     live: 'Live', connecting: 'Туташууда...', all: 'Бардыгы', only_free: 'Бош гана',
     active_fleet: 'Активдүү флот', new_orders: 'Жаңы заказдар', 
@@ -190,6 +192,7 @@ const AppShell = () => {
 
   const renderPage = () => {
     switch (page) {
+      case 'orders':   return <OrdersPage orders={orders} onAccept={() => {}} t={t} />;
       case 'fleet':    return <FleetPage fleet={drivers} t={t} />;
       case 'drivers':  return <DriversPage fleet={drivers} t={t} />;
       case 'finance':  return <FinancePage stats={stats} fleet={drivers} t={t} />;

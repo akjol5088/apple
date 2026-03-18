@@ -5,24 +5,7 @@ import { useSimulator } from '../hooks/useSimulator';
 
 const SocketContext = createContext(null);
 
-// Get server URL based on current environment
-const getServerUrl = () => {
-  // 1. Check for Environment Variable (best for production like Vercel)
-  if (import.meta.env.VITE_SERVER_URL) return import.meta.env.VITE_SERVER_URL;
-
-  if (typeof window === 'undefined') return 'http://localhost:5000';
-  
-  const { hostname, protocol } = window.location;
-  
-  // 2. Localhost detection
-  if (hostname === 'localhost' || hostname === '127.0.0.1') {
-    return 'http://localhost:5000';
-  }
-
-  // 3. Fallback for Local Network or Vercel Demo mode
-  // On Vercel, it should fallback to isDemo mode because :5000 won't exist
-  return `${protocol}//${hostname}:5000`;
-};
+import { SERVER_URL as SERVER } from '../utils/api';
 
 
 export const SocketProvider = ({ children }) => {
@@ -45,7 +28,6 @@ export const SocketProvider = ({ children }) => {
   const sim = useSimulator();
 
   useEffect(() => {
-    const SERVER = getServerUrl();
     console.log('Connecting to:', SERVER);
 
     // Connection timeout for demo fallback
@@ -57,9 +39,8 @@ export const SocketProvider = ({ children }) => {
     }, 3000);
 
     const socket = io(SERVER, { 
-      transports: ['websocket'],
-      reconnectionAttempts: 5,
-      timeout: 10000
+      reconnectionAttempts: 10,
+      timeout: 20000
     });
     
     socketRef.current = socket;

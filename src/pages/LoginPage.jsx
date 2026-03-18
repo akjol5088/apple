@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
-const SERVER = 'http://localhost:5000';
+import { SERVER_URL as SERVER } from '../utils/api';
 
 const LoginPage = () => {
   const { login } = useAuth();

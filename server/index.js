@@ -49,8 +49,9 @@ socketHandlers(io, driversRoute, ordersRoute);
 const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
-  server.listen(PORT, () => {
+  server.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📱 For mobile access, use your IP: http://<your-ip>:${PORT}`);
     console.log(`📡 Socket.io ready`);
   });
 });
